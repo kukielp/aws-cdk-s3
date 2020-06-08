@@ -9,7 +9,7 @@ export class AwsCdkS3Stack extends cdk.Stack {
 
     //Create the public S3 bucket 
     const publicAssets = new s3.Bucket(this, 'example-qr', {
-      bucketName: '{dnscompliant-bucket-name}',
+      bucketName: 'example.{domain-name}',
       publicReadAccess: true,
       removalPolicy: cdk.RemovalPolicy.DESTROY,
       websiteIndexDocument: 'index.html',
@@ -27,7 +27,7 @@ export class AwsCdkS3Stack extends cdk.Stack {
 
     //Lookup the zone based on domain name
     const zone = route53.HostedZone.fromLookup(this, 'baseZone', {
-      domainName: 'url2qr.me'
+      domainName: '{domain-name}'
     });
 
     //Add the Subdomain to Route53
